@@ -1,0 +1,211 @@
+<{php}>
+$ua = $_SERVER['HTTP_USER_AGENT'];
+if ((ereg("Windows",$ua) > 0) && (ereg("MSIE",$ua) > 0)) {if (ereg("MSIE 6.",$ua) > 0) {echo '';}} else {
+echo '<?xml version="1.0" encoding="'._CHARSET.'"?>';echo "\n";}
+<{/php}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<title><{$xoops_sitename}> - <{if $xoops_pagetitle}><{$xoops_pagetitle}><{else}><{$xoops_slogan}><{/if}></title>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author|replace:"@":"&#x40;"}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="start" title="<{$xoops_sitename}>" href="<{$xoops_url}>/" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<{$xoops_module_header}>
+</head>
+
+<body>
+	<div class="container">
+<{*--ヘッダ定義開始 header area start----------------------------------*}>
+		<div class="header_title">
+			<p><a href="<{$xoops_url}>/" name="top"><{$xoops_sitename}></a></p>
+			<h2><{$xoops_pagetitle}></h2>
+		</div>
+<{*--ヘッダメニュー開始 header menu start----------------------------------*}>
+		<div class="global_menu_wrap">
+			<h3 class="hidden_navi">ヘッダー部メニュー<{* Header Menu *}></h3>
+			<ul class="global_menu">
+				<{* rewrite your XOOPS ROOT PATH between ' and '. for example "index.php" finish and XOOPS ROOT PATH finish only *}>
+				<{if $xoops_requesturi == '/html/index.php' or $xoops_requesturi == '/html/'}>
+					<li class="menu_li_selected"><a href="<{$xoops_url}>/">Top page</a></li>
+				<{else}>
+					<li class="menu_li_"><a href="<{$xoops_url}>/">Top page</a></li>
+				<{/if}>
+				<{foreach from=$xugj_menus item="menu0"}>
+					<{if $menu0.dirname == $xoops_dirname}>
+						<{assign var="xugj_menus1" value=$menu0.sub}>
+						<{assign var="menu0_class" value="selected"}>
+					<{else}>
+						<{assign var="menu0_class" value=""}>
+					<{/if}>
+					<li class="menu_li_<{$menu0_class}>"><!--
+						--><a href="<{$xoops_url}>/modules/<{$menu0.dirname}>/<{$menu0.url}>"><{$menu0.name}></a><!--
+					--></li>
+				<{/foreach}>
+			</ul>
+		</div>
+<{*--ログイン＆ユーザメニュー定義開始 login and user menu area in theme start----------------------------------*}>
+		<div class="login_and_usermenu">
+			<{if ! $xoops_isuser}>
+				<fieldset class="fieldset">
+					<legend>ログインフォーム</legend>
+					<form action="<{$xoops_url}>/user.php" method="post" style="margin: 0px;">
+						<label class="uname_head" for="uname_head">ユーザー名</label><!--
+						--><input class="input" type="text" id="uname_head" name="uname" size="16" />
+						<label class="pass_head" for="pass_head">パスワード</label><!--
+						--><input class="input" type="password" id="pass_head" name="pass" size="16" />
+						<input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
+						<input type="hidden" name="op" value="login" />
+						<input class="login" type="submit" value="Login" />
+					</form>
+					<ul class="regist">
+						<li class="register"><a href="<{$xoops_url}>/register.php" title="新規登録する">新規登録する</a></li>
+						<li class="lostpass"><a href="<{$xoops_url}>/<{if $xoops_version != 'XOOPS 2.0.16a JP'}>lostpass.php<{else}>user.php<{/if}>" title="パスワード紛失">パスワード紛失</a></li>
+					</ul>
+				</fieldset>
+			<{else}>
+				<dl class="member_menu">
+					<dt>For&nbsp;<{$xoops_uname}>'s&nbsp;Menu:</dt>
+					<dd>
+						<ul>
+							<li><a href="<{$xoops_url}>/user.php">アカウント情報</a></li>
+							<li><a href="<{$xoops_url}>/notifications.php">イベント通知</a></li>
+							<li><a href="<{$xoops_url}>/viewpmsg.php">P.M.受信箱</a></li>
+							<li><a href="<{$xoops_url}>/user.php?op=logout">ログアウト</a></li>
+							<{if $xoops_isadmin}><li><a href="<{$xoops_url}>/admin.php">管理用</a></li><{/if}>
+						</ul>
+					</dd>
+				</dl>
+			<{/if}>
+		<br class="clearboth" />
+		<hr />
+		</div>
+<{*--ヘッダ定義終了 header area end----------------------------------*}>
+<{*--メイン部定義開始 main area start----------------------------------*}>
+		<div id="l_clr_r_wrap">
+	<{*--左右ブロックコントロール開始 control tag of left and right block area start----------------------------------*}>
+			<{if $xoops_showlblock == 1}>
+				<div id="left_center_wrap<{if ! $xoops_showrblock == 1}>_rc_none<{/if}>">
+			<{/if}>
+	<{*--左右ブロックコントロール終了 control tag of left and right block area end----------------------------------*}>
+	<{*--中央ブロックコントロール開始 control tag of center block area start----------------------------------*}>
+			<div id="centercolumn<{if ! $xoops_showlblock == 1}>_lc_none<{/if}><{if ! $xoops_showrblock == 1}>_rc_none<{/if}>">
+	<{*--中央ブロックコントロール終了 control tag of center block area end----------------------------------*}>
+	<{*--モジュール表示部開始 module area start----------------------------------*}>
+				<{if $xoops_contents}>
+					<div id="content"><{$xoops_contents}></div>
+				<{/if}>
+	<{*--モジュール表示部終了 module area end----------------------------------*}>
+				<{if $xoops_showcblock == 1}>
+	<{*--中央・中央ブロック定義開始 C,center block area start----------------------------------*}>
+					<div id="centerCcolumn">
+						<{foreach item=block from=$xoops_ccblocks}>
+							<{if ! $block.title|strstr:"none"}>
+								<h2 class="blockTitle"><{$block.title}></h2>
+							<{/if}>
+							<div class="blockContent"><{$block.content}></div>
+							<hr />
+						<{/foreach}>
+					</div>
+	<{*--中央・中央ブロック定義終了 C,center block area end----------------------------------*}>
+				<{/if}>
+ 			<{if $xoops_clblocks || $xoops_crblocks }>
+				<div id="cl_cr_wrap">
+	<{*--中央・左ブロック定義開始 C,left block area start----------------------------------*}>
+					<{if $xoops_clblocks}>
+						<div id="centerLcolumn">
+							<{foreach item=block from=$xoops_clblocks name=block}>
+							<{if ! $block.title|strstr:"none"}>
+								<h3 class="blockTitle"><{$block.title}></h3>
+							<{/if}>
+								<div class="blockContent"><{$block.content}></div>
+								<hr />
+							<{/foreach}>
+						</div>
+					<{/if}>
+	<{*--中央・左ブロック定義終了 C,left block area end----------------------------------*}>
+	<{*--中央・右ブロック定義開始 C,right block area start----------------------------------*}>
+					<{if $xoops_crblocks}>
+						<div id="centerRcolumn">
+							<{foreach item=block from=$xoops_crblocks name=block}>
+							<{if ! $block.title|strstr:"none"}>
+								<h3 class="blockTitle"><{$block.title}></h3>
+							<{/if}>
+								<div class="blockContent"><{$block.content}></div>
+								<hr />
+							<{/foreach}>
+						</div>
+					<{/if}>
+	<{*--中央・右ブロック定義終了 C,right block area end----------------------------------*}>
+				</div>
+			<{/if}>
+<{*--メイン部終了 main area end----------------------------------*}>
+				<div class="scroll"><p><a href="#top"><img src="<{$xoops_imageurl}>image/none.gif" width="100" height="31" alt="ページ上部へ移動" title="ページ上部へ移動" /></a></p></div>
+				<br class="clearboth" />
+			</div><{* .centercolumn end *}>
+	<{*--左ブロック定義開始 left block area stat----------------------------------*}>
+			<{if $xoops_showlblock == 1}>
+				<div id="leftcolumn<{if ! $xoops_showrblock == 1}>_rc_none<{/if}>">
+					<{foreach item=block from=$xoops_lblocks}>
+						<{if ! $block.title|strstr:"none"}>
+							<h3 class="blockTitle"><{$block.title}></h3>
+						<{else}>
+							<div class="blockTitle_no">&nbsp;</div>
+						<{/if}>
+						<div class="blockContent"><div class="blockContent_btm"><{$block.content}></div></div>
+						<hr />
+					<{/foreach}>
+				</div>
+			<{/if}>
+	<{*--左ブロック定義終了 left block area end----------------------------------*}>
+	<{*--左ブロックコントロール開始 control tag of left block area start----------------------------------*}>
+			<{if $xoops_showlblock == 1}>
+				</div>
+			<{/if}>
+	<{*--左ブロックコントロール終了 control tag of left block area end----------------------------------*}>
+	<{*--右ブロック定義開始 right block area start----------------------------------*}>
+			<{if $xoops_showrblock == 1}>
+				<div id="rightcolumn">
+					<{foreach item=block from=$xoops_rblocks}>
+						<{if ! $block.title|strstr:"none"}>
+							<h3 class="blockTitle"><{$block.title}></h3>
+						<{else}>
+							<div class="blockTitle_no">&nbsp;</div>
+						<{/if}>
+						<div class="blockContent"><div class="blockContent_btm"><{$block.content}></div></div>
+						<hr />
+					<{/foreach}>
+				</div>
+			<{/if}>
+	<{*--右ブロック定義終了 right block area end----------------------------------*}>
+		<br class="clearboth" />
+		</div><{* #l_clr_r_wrap end *}>
+<{*--バナー部定義開始 banner area start----------------------------------*}>
+			<{if $xoops_banner != '&nbsp;' && $xoops_banner != ''}>
+				<div id="banner"><{$xoops_banner}></div>
+			<{/if}>
+<{*--バナー部定義終了 banner area end----------------------------------*}>
+<{*--フッタ部定義開始 footer area start----------------------------------*}>
+		<address class="footer">
+			<{$xoops_footer}>
+		</address>
+<{* -- ライセンスエリア開始　削除は有料です ------------------------------------------ *}>
+		<p class="extraffic">
+			Theme Designed by&nbsp;<a href="http://www.expiece.com/html/" target="_blank"><cite>EXTRAFFIC</cite></a>
+		</p>
+<{* -- ライセンスエリア終了　削除は有料です ------------------------------------------ *}>
+<{*--フッタ部定義終了 footer area end----------------------------------*}>
+	</div><{* #container end *}>
+</body>
+</html>
